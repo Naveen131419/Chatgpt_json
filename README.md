@@ -2,13 +2,11 @@
 
 Install conda
 ```
-
 link - https://youtu.be/-sNX_ZMVpQM?si=er4eYhsjyuF4vJ52
 ```
 
 Generate OpenAI API key
 ```
-
 link - https://www.youtube.com/watch?v=gBSh9JI28UQ
 ```
 
@@ -42,3 +40,4 @@ python main.py
 ```
 
 Go to http://127.0.0.1:5000 when the server is up
+New file (interaction_history.json) will be created and you can see [user_quer, response] getting populated
