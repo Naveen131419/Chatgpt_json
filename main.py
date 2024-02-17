@@ -1,52 +1,9 @@
-# from flask import Flask, render_template, request, jsonify
-# import openai
-# import config
-# import json
-
-# openai.api_key = config.API_KEY
-
-# app = Flask(__name__)
-
-# def save_interaction(qa_pair):
-#     with open('interaction_history.json', 'a') as file:
-#         json.dump(qa_pair, file)
-#         file.write('\n')
-
-# @app.route("/")
-# def index():
-#     return render_template("index.html")
-
-# @app.route('/get', methods=['GET'])
-# def get_bot_response():
-#     userText = request.args.get('msg')
-#     response = openai.chat.completions.create(
-#         model="gpt-3.5-turbo",
-#         messages=[
-#             {"role": "user", "content": userText}
-#         ]
-#     )
-
-#     answer = response.choices[0].message.content
-
-#     qa_pair = {
-#         "question": userText,
-#         "answer": answer
-#     }
-
-#     save_interaction(qa_pair)
-
-#     print(qa_pair)
-#     return str(answer)
-
-# if __name__ == "__main__":
-#     app.run(debug=True)
-
 from flask import Flask, render_template, request, jsonify, session
 import openai
 import config
 import json
 import os
-from flask_session import Session  # Ensure Flask-Session is installed
+from flask_session import Session
 import os
 import secrets
 from datetime import datetime
@@ -79,8 +36,8 @@ def save_interaction(session_id, qa_pair):
 
 @app.route("/")
 def index():
-    # session['chat_id'] = session.sid  # Generate unique session ID
-    session.clear()  # Clear existing session data
+    # session['chat_id'] = session.sid  
+    session.clear()
     custom_session_id = f"{datetime.now().strftime('%Y%m%d%H%M%S')}-{secrets.token_urlsafe(4)}"
     session['chat_id'] = custom_session_id
     return render_template("index.html")
@@ -96,9 +53,9 @@ def get_bot_response():
     )
 
     answer = response.choices[0].message.content
-    qa_pair = [userText, answer]  # Adjust to list of lists structure
+    qa_pair = [userText, answer]  
 
-    save_interaction(session['chat_id'], qa_pair)  # Use session ID for tracking
+    save_interaction(session['chat_id'], qa_pair)  
 
     print(qa_pair)
     return answer
