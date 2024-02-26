@@ -39,5 +39,5 @@ Run the code
 python main.py
 ```
 
-Go to http://127.0.0.1:5000 when the server is up
+Go to http://127.0.0.1:5000 when the server is up </br>
 New file (interaction_history.json) will be created and you can see [user_quer, response] getting populated
